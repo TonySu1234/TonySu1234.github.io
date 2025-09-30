@@ -1,41 +1,168 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Hello</title>
-      
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tony Su - Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-          <body style="background-color: lightblue;">
-            <h1>This page has a light blue background.</h1>
-        </body>
-  <ul>
-  <li>This is a unorganized list</li>
-  <li>Second item</li>
-  <li>Third item</li>
-  </ul>
+  <body>
+    <!-- Header -->
+    <header class="welcome-header">
+      <h1>WELCOME</h1>
+    </header>
 
-  <ol>
-    <li>This is an organized list</li>
-    <li>Item 2</li>
-    <li>Item 3</li>
-  </ol>
-  <p>This is a Paragraph
-  
-  TEST test 1234567890</p>
+    <!-- Main Layout -->
+    <div class="main-layout">
+      <!-- Left Navigation Panel -->
+      <nav class="left-nav">
+        <ul class="nav-links">
+          <li><a href="#projects" class="nav-link active" data-page="projects"><span class="nav-label">My Projects ←</span></a></li>
+          <li><a href="#about" class="nav-link" data-page="about"><span class="nav-label">About Me ←</span></a></li>
+          <li><a href="#contact" class="nav-link" data-page="contact"><span class="nav-label">Contact ←</span></a></li>
+        </ul>
+      </nav>
 
-  <h1>This is a header</h1>
-  <h2>This is h2, it is smaller than h1</h2>
-  <h3>This is h3</h3>
-  <h4>This is h4</h4>
-  <h5>This is h5</h5>
-  <h6>This is h6</h6>
-  
-  
-  <p href='style.css'>
-    This text should be colored
+      <!-- Right Content Area -->
+      <main class="right-content">
+        <!-- Projects Section -->
+        <section id="projects" class="content-section angled-section active">
+          <div class="content-header">
+            <h2>My Projects ←</h2>
+          </div>
+          
+          <div class="projects-container">
+            <div class="project-box">
+              <h3>Project 1</h3>
+              <p>Description of your first amazing project goes here.</p>
+            </div>
+            
+            <div class="project-box">
+              <h3>Project 2</h3>
+              <p>Description of your second incredible project goes here.</p>
+            </div>
+          </div>
+        </section>
 
-    ABCD
+        <!-- About Me Section -->
+        <section id="about" class="content-section angled-section">
+          <div class="content-header">
+            <h2>About Me ←</h2>
+          </div>
+          
+          <div class="about-container">
+            <div class="about-content">
+              <div class="image-placeholder">
+                <span>Image</span>
+              </div>
+              <div class="about-text">
+                <span class="arrow">→</span>
+                <p>Text Here..</p>
+                <p>I'm Tony Su, a student at HKIS passionate about technology and innovation. I love creating digital solutions and exploring new possibilities in web development.</p>
+              </div>
+            </div>
+            
+            <div class="experience-section">
+              <h3>Experience ←</h3>
+              <div class="experience-box">
+                <div class="experience-item">
+                  <span class="arrow">→</span>
+                  <span>Web Development Projects</span>
+                </div>
+                <div class="experience-item">
+                  <span class="arrow">→</span>
+                  <span>Student at HKIS</span>
+                </div>
+                <div class="experience-item">
+                  <span class="arrow">→</span>
+                  <span>Technology Enthusiast</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
+        <!-- Contact Section -->
+        <section id="contact" class="content-section angled-section">
+          <div class="content-header">
+            <h2>Contact ←</h2>
+          </div>
+          
+          <div class="contact-container">
+            <div class="contact-info">
+              <div class="contact-item">
+                <span class="phone">+852 12341234</span>
+              </div>
+              <div class="contact-item">
+                <span class="email">ExampleEmail@gmail.com</span>
+              </div>
+            </div>
+            
+            <div class="message-section">
+              <h3>Contact ←</h3>
+              <div class="message-form">
+                <div class="angled-input">
+                  <textarea placeholder="Type message here..." class="message-input"></textarea>
+                </div>
+                <button class="send-button"><span class="btn-label">Send</span></button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-  </p>
+      </main>
+    </div>
+
+    <!-- Footer Elements -->
+    <div class="footer-elements">
+      <div class="visitor-counter">
+        <span class="visitor-label">Visitor Number</span>
+        <div class="counter-box">223</div>
+      </div>
+      
+      <div class="credit">
+        <span>CREDIT: Tony Su</span>
+      </div>
+    </div>
+
+    <script>
+      // Page transition functionality
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          const targetPage = link.getAttribute('data-page');
+          const targetSection = document.getElementById(targetPage);
+          
+          if (!targetSection) return;
+          
+          // Get current active section BEFORE removing active classes
+          const currentActive = document.querySelector('.content-section.active');
+          
+          // Remove active class from all nav links
+          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+          
+          // Add active class to clicked link
+          link.classList.add('active');
+          
+          // Add transition class to current active section
+          if (currentActive) {
+            currentActive.classList.add('slide-out-left');
+          }
+          
+          // Add transition class to target section
+          targetSection.classList.add('slide-in-right');
+          
+          // After transition, update active states
+          setTimeout(() => {
+            if (currentActive) {
+              currentActive.classList.remove('slide-out-left', 'active');
+            }
+            targetSection.classList.remove('slide-in-right');
+            targetSection.classList.add('active');
+          }, 300);
+        });
+      });
+    </script>
+  </body>
 </html>
-
