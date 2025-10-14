@@ -1,7 +1,12 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Navigation initialized');
     // Get all navigation links
     const navLinks = document.querySelectorAll('.nav-link');
+    // Ensure navigation is visible by adding active class to first link if none is active
+    if (!document.querySelector('.nav-link.active')) {
+        navLinks[0]?.classList.add('active');
+    }
     
     // Function to handle page transitions
     const handlePageTransition = (e) => {
