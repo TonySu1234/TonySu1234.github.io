@@ -125,44 +125,6 @@
       </div>
     </div>
 
-    <script>
-      // Page transition functionality
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          
-          const targetPage = link.getAttribute('data-page');
-          const targetSection = document.getElementById(targetPage);
-          
-          if (!targetSection) return;
-          
-          // Get current active section BEFORE removing active classes
-          const currentActive = document.querySelector('.content-section.active');
-          
-          // Remove active class from all nav links
-          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-          
-          // Add active class to clicked link
-          link.classList.add('active');
-          
-          // Add transition class to current active section
-          if (currentActive) {
-            currentActive.classList.add('slide-out-left');
-          }
-          
-          // Add transition class to target section
-          targetSection.classList.add('slide-in-right');
-          
-          // After transition, update active states
-          setTimeout(() => {
-            if (currentActive) {
-              currentActive.classList.remove('slide-out-left', 'active');
-            }
-            targetSection.classList.remove('slide-in-right');
-            targetSection.classList.add('active');
-          }, 300);
-        });
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
