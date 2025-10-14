@@ -11,14 +11,69 @@
   --color-grey: #666666;
   --color-light-grey: #f5f5f5;
   --color-white: #ffffff;
+  --stripe-width: 20px;
+  --stripe-movement-speed: 12s;
+  --stripe-opacity: 0.15;
+  --stripe-angle: 45deg;
+  --stripe-dark: #000000;
+}
+
+/* Add support for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+
+@keyframes moveStripes {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-28.28px, -28.28px); /* 20px * √2 for diagonal movement */
+  }
+}
+
+/* Add smooth pause at end points */
+@media (prefers-reduced-motion: no-preference) {
+  body::before {
+    animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
 }
 
 body {
   font-family: 'Righteous', sans-serif;
-  background: var(--color-white);
   color: var(--color-black);
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    #000000 0px,
+    #000000 10px,
+    var(--color-white) 10px,
+    var(--color-white) 20px
+  );
+  animation: moveStripes var(--stripe-movement-speed) linear infinite;
+  animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  z-index: -1;
+  opacity: 0.15;
+  will-change: transform;
+}
+
+/* Add a solid background behind content for better readability */
+.main-layout, .welcome-header, .footer-elements {
+  background: var(--color-white);
+  position: relative;
 }
 
 /* Welcome Header */
@@ -78,15 +133,18 @@ body {
 /* Left Navigation Panel */
 .left-nav {
   width: 320px;
-  background: var(--color-light-grey);
+  background: rgba(255, 255, 255, 0.95);
   border: 2px solid var(--color-black);
   border-right: 4px solid var(--color-black);
   padding: 50px 30px;
   position: relative;
   margin: 20px 20px 20px 0;
   clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
-  box-shadow: 4px 4px 0px var(--color-dark-grey);
+  box-shadow: 4px 4px 0px var(--color-dark-grey),
+              0 0 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .left-nav::before {
@@ -139,12 +197,15 @@ body {
 .right-content {
   flex: 1;
   padding: 50px;
-  background: var(--color-white);
+  background: rgba(255, 255, 255, 0.97);
   border: 2px solid var(--color-black);
   position: relative;
   margin: 20px 0 20px 20px;
-  box-shadow: 4px 4px 0px var(--color-dark-grey);
+  box-shadow: 4px 4px 0px var(--color-dark-grey),
+              0 0 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .right-content::before {
@@ -278,11 +339,19 @@ body {
   background: var(--color-black);
   border: 2px solid var(--color-dark-grey);
   padding: 40px;
-  box-shadow: 4px 4px 0px var(--color-dark-grey);
-  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0px var(--color-dark-grey),
+              0 0 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
   overflow: hidden;
+  transform: translateZ(0);
+}
+
+.project-box:hover {
+  transform: translateY(-5px) translateZ(0);
+  box-shadow: 6px 6px 0px var(--color-dark-grey),
+              0 0 25px rgba(0, 0, 0, 0.3);
 }
 
 .project-box::before {
