@@ -56,4 +56,40 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.forEach(link => {
         link.addEventListener('click', handlePageTransition);
     });
+
+    // --- Personal Guess My Number game setup ---
+    let personalTarget = null;
+    const guessInput = document.getElementById('guessInput');
+    const guessButton = document.getElementById('guessButton');
+    const guessMessage = document.getElementById('guessMessage');
+
+    function resetPersonalGame() {
+        personalTarget = Math.floor(Math.random() * 20) + 1;
+        if (guessInput) guessInput.value = '';
+        if (guessMessage) guessMessage.textContent = 'Good luck!';
+        console.log('Personal game target set to', personalTarget);
+    }
+
+    if (guessButton) {
+        guessButton.addEventListener('click', () => {
+            const raw = guessInput?.value;
+            const val = Number(raw);
+            if (!val || val < 1 || val > 20) {
+                guessMessage.textContent = 'Please enter a number between 1 and 20.';
+                return;
+            }
+
+            if (val === personalTarget) {
+                guessMessage.textContent = `Correct — the number was ${personalTarget}! Nice job.`;
+                setTimeout(resetPersonalGame, 1500);
+            } else if (val < personalTarget) {
+                guessMessage.textContent = 'Too low — try a higher number.';
+            } else {
+                guessMessage.textContent = 'Too high — try a lower number.';
+            }
+        });
+    }
+
+    // Initialize the personal game once DOM elements exist
+    resetPersonalGame();
 });
