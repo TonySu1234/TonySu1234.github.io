@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tony Su - Portfolio</title>
-<<<<<<< HEAD
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
@@ -23,15 +23,6 @@
         </div>
       </div>
     </section>
-=======
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="welcome-header">
-      <h1>WELCOME</h1>
-    </header>
->>>>>>> ec3567de1e99bd452825c91b7c6bfa488e15b0b2
 
     <!-- Main Layout -->
     <div class="main-layout">
@@ -40,11 +31,8 @@
         <ul class="nav-links">
           <li><a href="#projects" class="nav-link active" data-page="projects"><span class="nav-label">My Projects ←</span></a></li>
           <li><a href="#about" class="nav-link" data-page="about"><span class="nav-label">About Me ←</span></a></li>
-<<<<<<< HEAD
           <li><a href="#interests" class="nav-link" data-page="interests"><span class="nav-label">Interests ←</span></a></li>
           <li><a href="#non-coding" class="nav-link" data-page="non-coding"><span class="nav-label">Non Coding Projects ←</span></a></li>
-=======
->>>>>>> ec3567de1e99bd452825c91b7c6bfa488e15b0b2
           <li><a href="#contact" class="nav-link" data-page="contact"><span class="nav-label">Contact ←</span></a></li>
         </ul>
       </nav>
@@ -136,7 +124,6 @@
           </div>
         </section>
 
-<<<<<<< HEAD
         <!-- Interests Section -->
         <section id="interests" class="content-section angled-section">
           <div class="content-header">
@@ -184,8 +171,6 @@
             </div>
           </div>
         </section>
-=======
->>>>>>> ec3567de1e99bd452825c91b7c6bfa488e15b0b2
       </main>
     </div>
 
@@ -201,48 +186,6 @@
       </div>
     </div>
 
-<<<<<<< HEAD
     <script src="script.js"></script>
-=======
-    <script>
-      // Page transition functionality
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          
-          const targetPage = link.getAttribute('data-page');
-          const targetSection = document.getElementById(targetPage);
-          
-          if (!targetSection) return;
-          
-          // Get current active section BEFORE removing active classes
-          const currentActive = document.querySelector('.content-section.active');
-          
-          // Remove active class from all nav links
-          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-          
-          // Add active class to clicked link
-          link.classList.add('active');
-          
-          // Add transition class to current active section
-          if (currentActive) {
-            currentActive.classList.add('slide-out-left');
-          }
-          
-          // Add transition class to target section
-          targetSection.classList.add('slide-in-right');
-          
-          // After transition, update active states
-          setTimeout(() => {
-            if (currentActive) {
-              currentActive.classList.remove('slide-out-left', 'active');
-            }
-            targetSection.classList.remove('slide-in-right');
-            targetSection.classList.add('active');
-          }, 300);
-        });
-      });
-    </script>
->>>>>>> ec3567de1e99bd452825c91b7c6bfa488e15b0b2
   </body>
 </html>
